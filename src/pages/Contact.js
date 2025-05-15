@@ -42,7 +42,7 @@ function Contact() {
       <div className="relative min-h-screen background-image" style={{ backgroundImage: 'url(/images/bg.jpg)' }}>
         <div className="overlay"></div>
 
-        <Container maxWidth="lg" className="relative z-10 min-h-screen flex items-center justify-center py-8 sm:py-16 px-4 pt-32 sm:pt-20">
+        <Container maxWidth="lg" className="relative z-10 h-screen overflow-y-auto py-8 sm:py-16 px-4 pt-32 sm:pt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
