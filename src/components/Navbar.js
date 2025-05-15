@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Container, IconButton, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { motion, AnimatePresence } from 'framer-motion';
 
 function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -20,10 +19,16 @@ function Navbar() {
   ];
 
   return (
-    <AppBar position="static" className="bg-black bg-opacity-50">
+    <AppBar 
+      position="fixed" 
+      className="bg-black bg-opacity-50 backdrop-blur-sm"
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1
+      }}
+    >
       <Container maxWidth="lg">
         <Toolbar className="justify-between py-2">
-          <Link to="/" className="text-2xl md:text-3xl font-bold text-white no-underline hover:text-gray-300 transition-colors">
+          <Link to="/" className="text-2xl md:text-4xl font-bold text-white no-underline hover:text-gray-300 transition-colors font-['Poppins']">
             Gurupata Hendewa
           </Link>
           
@@ -36,7 +41,7 @@ function Navbar() {
                 onClick={handleDrawerToggle}
                 className="text-white hover:text-gray-300"
               >
-                <MenuIcon className="text-2xl" />
+                <MenuIcon className="text-xl" />
               </IconButton>
               <Drawer
                 anchor="right"
@@ -73,7 +78,7 @@ function Navbar() {
                       <ListItemText 
                         primary={item.text} 
                         primaryTypographyProps={{
-                          className: 'text-xl font-medium text-white'
+                          className: 'text-base font-medium text-white font-["Poppins"]'
                         }}
                       />
                     </ListItem>
@@ -87,7 +92,7 @@ function Navbar() {
                 color="inherit" 
                 component={Link} 
                 to="/"
-                className="text-lg hover:text-gray-300"
+                className="text-sm hover:text-gray-300 font-['Poppins']"
               >
                 Home
               </Button>
@@ -95,7 +100,7 @@ function Navbar() {
                 color="inherit" 
                 component={Link} 
                 to="/about"
-                className="text-lg hover:text-gray-300"
+                className="text-sm hover:text-gray-300 font-['Poppins']"
               >
                 About Us
               </Button>
@@ -103,7 +108,7 @@ function Navbar() {
                 color="inherit" 
                 component={Link} 
                 to="/contact"
-                className="text-lg hover:text-gray-300"
+                className="text-sm hover:text-gray-300 font-['Poppins']"
               >
                 Contact
               </Button>
