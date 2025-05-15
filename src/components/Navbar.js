@@ -45,8 +45,10 @@ function Navbar() {
                 PaperProps={{
                   sx: {
                     width: '75%',
-                    backgroundColor: 'white',
-                    boxShadow: '0 0 20px rgba(0,0,0,0.3)'
+                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                    backdropFilter: 'blur(10px)',
+                    boxShadow: '0 0 20px rgba(0,0,0,0.5)',
+                    borderLeft: '1px solid rgba(255,255,255,0.1)'
                   }
                 }}
                 SlideProps={{
@@ -60,17 +62,18 @@ function Navbar() {
                       component={Link}
                       to={item.path}
                       onClick={handleDrawerToggle}
-                      className="text-black hover:bg-gray-100 transition-colors"
+                      className="text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300"
                       sx={{
                         '&:hover': {
-                          backgroundColor: 'rgba(0,0,0,0.05)'
+                          backgroundColor: 'rgba(255,255,255,0.1)',
+                          transform: 'translateX(-5px)'
                         }
                       }}
                     >
                       <ListItemText 
                         primary={item.text} 
                         primaryTypographyProps={{
-                          className: 'text-xl font-medium'
+                          className: 'text-xl font-medium text-white'
                         }}
                       />
                     </ListItem>
