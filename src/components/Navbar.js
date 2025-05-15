@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Button, Container, IconButton, Menu, MenuItem, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Toolbar, Button, Container, IconButton, useMediaQuery, useTheme, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function Navbar() {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleDrawerToggle = () => {
+    setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const menuItems = [
+    { text: 'Home', path: '/' },
+    { text: 'About Us', path: '/about' },
+    { text: 'Contact', path: '/contact' }
+  ];
 
   return (
     <AppBar position="static" className="bg-black bg-opacity-50">
@@ -30,45 +33,50 @@ function Navbar() {
                 edge="end"
                 color="inherit"
                 aria-label="menu"
-                onClick={handleMenu}
+                onClick={handleDrawerToggle}
                 className="text-white hover:text-gray-300"
               >
                 <MenuIcon className="text-2xl" />
               </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                className="mt-12"
+              <Drawer
+                anchor="right"
+                open={isDrawerOpen}
+                onClose={handleDrawerToggle}
                 PaperProps={{
-                  className: "bg-black bg-opacity-90 backdrop-blur-sm"
+                  sx: {
+                    width: '75%',
+                    backgroundColor: 'white',
+                    boxShadow: '0 0 20px rgba(0,0,0,0.3)'
+                  }
+                }}
+                SlideProps={{
+                  timeout: 300
                 }}
               >
-                <MenuItem 
-                  component={Link} 
-                  to="/" 
-                  onClick={handleClose}
-                  className="text-white hover:bg-gray-800 text-lg py-3"
-                >
-                  Home
-                </MenuItem>
-                <MenuItem 
-                  component={Link} 
-                  to="/about" 
-                  onClick={handleClose}
-                  className="text-white hover:bg-gray-800 text-lg py-3"
-                >
-                  About Us
-                </MenuItem>
-                <MenuItem 
-                  component={Link} 
-                  to="/contact" 
-                  onClick={handleClose}
-                  className="text-white hover:bg-gray-800 text-lg py-3"
-                >
-                  Contact
-                </MenuItem>
-              </Menu>
+                <List className="pt-16">
+                  {menuItems.map((item) => (
+                    <ListItem
+                      key={item.text}
+                      component={Link}
+                      to={item.path}
+                      onClick={handleDrawerToggle}
+                      className="text-black hover:bg-gray-100 transition-colors"
+                      sx={{
+                        '&:hover': {
+                          backgroundColor: 'rgba(0,0,0,0.05)'
+                        }
+                      }}
+                    >
+                      <ListItemText 
+                        primary={item.text} 
+                        primaryTypographyProps={{
+                          className: 'text-xl font-medium'
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </Drawer>
             </>
           ) : (
             <div className="space-x-4">
