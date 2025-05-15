@@ -12,10 +12,19 @@ function Home() {
         <meta name="keywords" content="Gurupata Hendewa, event, countdown, tickets" />
       </Helmet>
 
-      <div className="relative min-h-screen background-image" style={{ backgroundImage: 'url(/images/bg.jpg)' }}>
+      <div className="relative min-h-screen">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover"
+        >
+          <source src="/videos/bg.mp4" type="video/mp4" />
+        </video>
         <div className="overlay"></div>
 
-        <Container maxWidth="lg" className="relative z-10 px-4 pt-20">
+        <Container maxWidth="lg" className="relative z-10 min-h-screen flex items-center justify-center py-8 sm:py-16 px-4">
           <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] text-center">
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-3 sm:mb-6 text-white px-2 sm:px-4">
               Gurupata Hendewa
